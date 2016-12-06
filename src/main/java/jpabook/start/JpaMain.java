@@ -20,9 +20,10 @@ public class JpaMain {
 			logic(em);
 			tx.commit();
 		} catch (Exception e) {
+			e.printStackTrace();
 			tx.rollback();
 		} finally {
-			em.clear();
+			em.close();
 		}
 		emf.close();
 	}
@@ -42,13 +43,13 @@ public class JpaMain {
 
 		// 한건 조회
 		Member findMember = em.find(Member.class, id);
-		System.out.printf("findMember=%s, age=%\n", findMember.getUsername(), findMember.getAge());
+		System.out.printf("findMember=%s, age=%d\n", findMember.getUsername(), findMember.getAge());
 
 		// 목록조회
 		List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
 
 		System.out.printf("members.size=%d\n", members.size());
-		
+
 		em.remove(member);
 	}
 }
