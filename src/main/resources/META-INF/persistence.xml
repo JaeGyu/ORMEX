@@ -16,9 +16,9 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
 
             <!-- 옵션 -->
-<!--             <property name="hibernate.show_sql" value="true" /> -->
-<!--             <property name="hibernate.format_sql" value="true" /> -->
-<!--             <property name="hibernate.use_sql_comments" value="true" /> -->
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.use_sql_comments" value="true" />
             <property name="hibernate.id.new_generator_mappings" value="true" />
 
 			<!-- 아래것을 해주면 애플리케이션 실행할때 기존테이블 싹 날리고 @Entity를 참조해서 다시만들어준다.
@@ -26,7 +26,7 @@
 			     이렇게 하면 개발하면서 db를 만질일이 거의 없다.Entity만 만들어 놓으면 알아서 
 			     테이블을 만들어 준다. 즉 Entity로 개발을 다 끝내 놓고 오픈 직전에 만들어진 테이블을
 			     보고 테이블 리팩토링을 해준다. -->
-            <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+            <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
 
