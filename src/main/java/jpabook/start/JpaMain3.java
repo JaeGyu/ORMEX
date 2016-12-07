@@ -23,6 +23,7 @@ public class JpaMain3 {
 			em.remove(memberA);
 			System.out.println("삭제 후 : " + memberA); //이렇게 사용하면 안됨 영속성 컨텍스트에서는 지워져 있기 때문에...
 			System.out.println("영속성 컨텍스트에서 찾아보기 : " + em.find(Member.class, "1"));
+			System.out.println("한번 더 출력하기 : " + memberA);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
