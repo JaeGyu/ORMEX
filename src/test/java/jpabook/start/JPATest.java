@@ -55,10 +55,16 @@ public class JPATest {
 		m1.setUsername("alice");
 
 		em.persist(m1);
+		System.out.println(em.contains(m1));
 
 		em.detach(m1);
-
+//		Member mergeMember = em.merge(m1); 
+		
+		
+		System.out.println(em.contains(m1));
+//		System.out.println(em.contains(mergeMember));
 	}
+	
 
 	@After
 	public void dropDown() throws Exception {

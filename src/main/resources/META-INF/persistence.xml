@@ -19,6 +19,10 @@
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.use_sql_comments" value="true" />
+            
+            <!-- 더 효과적이게 키 생성을 하려고 전략을 개발했는데 이전 버전 떄문에 
+                 디폴트로 false를 한다. 이전 버전을 유지보수 하는 것이 아니라면 
+                 true로 하자! -->
             <property name="hibernate.id.new_generator_mappings" value="true" />
 
 			<!-- 아래것을 해주면 애플리케이션 실행할때 기존테이블 싹 날리고 @Entity를 참조해서 다시만들어준다.
@@ -27,6 +31,10 @@
 			     테이블을 만들어 준다. 즉 Entity로 개발을 다 끝내 놓고 오픈 직전에 만들어진 테이블을
 			     보고 테이블 리팩토링을 해준다. -->
             <property name="hibernate.hbm2ddl.auto" value="create" />
+            
+            <!-- 이름 매핑 전략 카멜 표기법을 db의 언더바 표기법으로 자동 매핑 -->
+            <property name="hibernate.ejb.naming_strategy"
+             value="org.hibernate.cfg.ImprovedNamingStrategy"></property>
         </properties>
     </persistence-unit>
 
