@@ -20,8 +20,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity
-@Table(name = "MEMBER", uniqueConstraints={@UniqueConstraint(
+@Entity(name="OldMember")
+@Table(name = "OLD_MEMBER", uniqueConstraints={@UniqueConstraint(
 		name = "NAME_AGE_UNIQUE",
 		columnNames = {"NAME","AGE"})})
 public class Member {
