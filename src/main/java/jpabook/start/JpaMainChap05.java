@@ -44,11 +44,15 @@ public class JpaMainChap05 {
 			tx.commit();
 			
 			tx.begin();
-			updateTeam(em);
+//			updateTeam(em);
 			tx.commit();
 			
 			tx.begin();
-			deleteRelation(em);
+//			deleteRelation(em);
+			tx.commit();
+			
+			tx.begin();
+			biDirection(em);
 			tx.commit();
 
 		} catch (Exception e) {
@@ -58,6 +62,19 @@ public class JpaMainChap05 {
 		}
 
 		emf.close();
+	}
+
+	private static void biDirection(EntityManager em) {
+		TeamChap05 team = em.find(TeamChap05.class, "team1");
+		List<MemberChap05> members = team.getMembers();
+		
+		//안되고 있음 
+		System.out.println("members size = " + members.size());
+
+		for (MemberChap05 member : members) {
+			System.out.println("member.username = " + member.getUsername());
+		}
+
 	}
 
 	private static void deleteRelation(EntityManager em) {
