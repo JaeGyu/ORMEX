@@ -23,4 +23,9 @@ public class MemberChap05 {
 	@JoinColumn(name = "TEAM_ID")
 	private TeamChap05 team;
 
+	public MemberChap05(String id, String username) {
+		this.id = id;
+		this.username = username;
+	}
+
 }
