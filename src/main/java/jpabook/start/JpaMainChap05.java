@@ -1,5 +1,7 @@
 package jpabook.start;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -37,6 +39,18 @@ public class JpaMainChap05 {
 			System.out.println("================================");
 			tx.commit();
 
+			tx.begin();
+			queryLogicJoin(em);
+			tx.commit();
+			
+			tx.begin();
+			updateTeam(em);
+			tx.commit();
+			
+			tx.begin();
+			deleteRelation(em);
+			tx.commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -44,5 +58,28 @@ public class JpaMainChap05 {
 		}
 
 		emf.close();
+	}
+
+	private static void deleteRelation(EntityManager em) {
+		MemberChap05 member1 = em.find(MemberChap05.class, "member1");
+		member1.setTeam(null);
+	}
+
+	private static void updateTeam(EntityManager em) {
+		TeamChap05 team3 = new TeamChap05("team3", "팀3");
+		em.persist(team3);
+		MemberChap05 member1 = em.find(MemberChap05.class, "member1");
+		member1.setTeam(team3);
+	}
+
+	private static void queryLogicJoin(EntityManager em) {
+		String jpql = "select m from MemberChap05 m join m.team t where t.name = :teamName";
+		List<MemberChap05> resultList = em.createQuery(jpql, MemberChap05.class)
+				.setParameter("teamName", "팀1")
+				.getResultList();
+
+		for (MemberChap05 member : resultList) {
+			System.out.println("[query] member.username=" + member.getUsername());
+		}
 	}
 }
