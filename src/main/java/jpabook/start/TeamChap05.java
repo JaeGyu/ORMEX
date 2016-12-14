@@ -10,11 +10,15 @@ import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
 @Entity
 @NoArgsConstructor
+@Setter
+@Getter
 public class TeamChap05 {
 
 	@Id
@@ -29,5 +33,12 @@ public class TeamChap05 {
 		this.id = id;
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "TeamChap05 [id=" + id + ", name=" + name + ", members size=" + members.size() + "]";
+	}
+	
+	
 
 }

@@ -8,9 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Data
+@Setter
+@Getter
+//@ToString
 public class MemberChap05 {
 
 	@Id
@@ -28,4 +33,10 @@ public class MemberChap05 {
 		this.username = username;
 	}
 
+	@Override
+	public String toString() {
+		return "MemberChap05 [id=" + id + ", username=" + username + ", team name=" + team.getName() + "]";
+	}
+
+	
 }
