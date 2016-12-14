@@ -15,7 +15,7 @@ import lombok.ToString;
 @Entity
 @Setter
 @Getter
-//@ToString
+// @ToString
 public class MemberChap05 {
 
 	@Id
@@ -38,5 +38,11 @@ public class MemberChap05 {
 		return "MemberChap05 [id=" + id + ", username=" + username + ", team name=" + team.getName() + "]";
 	}
 
-	
+	public void setTeam(TeamChap05 team) {
+		if (this.team != null) {
+			this.team.getMembers().remove(this);
+		}
+		this.team = team;
+		this.team.getMembers().add(this);
+	}
 }

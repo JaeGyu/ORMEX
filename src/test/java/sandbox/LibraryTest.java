@@ -27,28 +27,45 @@ public class LibraryTest {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 
+		EntityManager em2 = emf.createEntityManager();
+		EntityTransaction tx2 = em2.getTransaction();
+
 		try {
 			tx.begin();
 			Library l1 = new Library("sk");
 			em.persist(l1);
-			
-			Book book1 = new Book("JPA 배우기",32000);
+
+			Book book1 = new Book("JPA 배우기", 32000);
 			book1.setLibrary(l1);
 			em.persist(book1);
-			
+
 			Book book2 = new Book("JAVA의 정석", 28000);
 			book2.setLibrary(l1);
 			em.persist(book2);
-			
+
 			Library ll = em.find(Library.class, l1.getId());
-					
-			System.out.println("도서관 :: "+ll.getBooks());
-			
+
+			System.out.println("도서관 :: " + ll.getBooks());
+
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			em.close();
+		}
+
+		try {
+			tx2.begin();
+			Library l = em2.find(Library.class, 1l);
+			System.out.println(l);
+			
+			System.out.println("도서관2 : " + l.getBooks());
+			
+			tx2.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em2.close();
 		}
 	}
 

@@ -21,18 +21,18 @@ public class JpaMainChap05_1 {
 			
 			MemberChap05 member1 = new MemberChap05("member1", "회원1");
 			member1.setTeam(team1);
-			team1.getMembers().add(member1);
+//			team1.getMembers().add(member1);
 			em.persist(member1);
 			
 			MemberChap05 member2 = new MemberChap05("member2", "회원2");
 			member2.setTeam(team1);
-			team1.getMembers().add(member2);
+//			team1.getMembers().add(member2);
 			em.persist(member2);
 			
 			tx.commit();
 			tx2.begin();
 			TeamChap05 team  = em.find(TeamChap05.class, "team1");
-			System.out.println("팀 : " + team);
+//			System.out.println("팀 : " + team);
 			System.out.println("팀원들 : "+team.getMembers());
 			
 			for(MemberChap05 m : team.getMembers()){

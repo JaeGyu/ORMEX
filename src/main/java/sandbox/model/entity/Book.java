@@ -9,15 +9,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
 @Table(name = "BOOK")
+@Setter
+@Getter
+@NoArgsConstructor
 public class Book {
 
 	@Id
 	@GeneratedValue
-	@Column(name="BOOK_ID")
+	@Column(name = "BOOK_ID")
 	private Long id;
 
 	@Column(name = "NAME")
@@ -37,6 +42,11 @@ public class Book {
 	}
 
 	private void setId(Long id) {
+	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", price=" + price + ", library name=" + library.getName() + "]";
 	}
 
 }
