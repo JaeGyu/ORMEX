@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Data
@@ -19,4 +20,12 @@ public class Team_p206 {
 	private Long id;
 
 	private String name;
+
+	public Team_p206(String name) {
+		super();
+		this.name = name;
+	}
+
+	private void setId(Long id) {
+	}
 }

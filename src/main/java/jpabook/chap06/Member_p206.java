@@ -25,4 +25,12 @@ public class Member_p206 {
 	@JoinColumn(name = "TEAM_ID")
 	private Team_p206 team;
 
+	public Member_p206(String username, Team_p206 team) {
+		super();
+		this.username = username;
+		this.team = team;
+	}
+
+	private void setId(Long id) {
+	}
 }

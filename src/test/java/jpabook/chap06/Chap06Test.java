@@ -27,6 +27,11 @@ public class Chap06Test {
 
 		try {
 			tx.begin();
+			Team_p206 team = new Team_p206("영업");
+			em.persist(team);
+
+			Member_p206 member = new Member_p206("alice", team);
+			em.persist(member);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
