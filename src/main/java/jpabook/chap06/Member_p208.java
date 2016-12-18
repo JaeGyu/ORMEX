@@ -9,10 +9,12 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Entity
 @NoArgsConstructor
+@ToString(exclude="team")
 public class Member_p208 {
 
 	@Id

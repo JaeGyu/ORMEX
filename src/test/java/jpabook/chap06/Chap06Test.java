@@ -38,6 +38,29 @@ public class Chap06Test {
 		}
 	}
 
+	@Test
+	public void member_p208() throws Exception {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+
+		try {
+			tx.begin();
+			Team_p208 team = new Team_p208();  
+			team.setName("인사");
+			em.persist(team);
+			
+			Member_p208 member = new Member_p208();
+			member.setUsername("bob");
+			member.setTeam(team);
+			em.persist(member);
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+	}
+
 	@After
 	public void dropDown() throws Exception {
 		emf.close();
