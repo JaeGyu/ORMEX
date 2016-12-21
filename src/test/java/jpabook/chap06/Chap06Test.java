@@ -45,10 +45,10 @@ public class Chap06Test {
 
 		try {
 			tx.begin();
-			Team_p208 team = new Team_p208();  
+			Team_p208 team = new Team_p208();
 			team.setName("인사");
 			em.persist(team);
-			
+
 			Member_p208 member = new Member_p208();
 			member.setUsername("bob");
 			member.setTeam(team);
@@ -59,6 +59,32 @@ public class Chap06Test {
 		} finally {
 			em.close();
 		}
+	}
+
+	@Test
+	public void team_p210Test() throws Exception {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+
+		try {
+			tx.begin();
+			Member_p210 member1 = new Member_p210("member1");
+			Member_p210 member2 = new Member_p210("member2");
+			em.persist(member1);
+			em.persist(member2);
+
+			Team_p210 team = new Team_p210();
+			team.setName("team");
+			team.getMembers().add(member1);
+			team.getMembers().add(member2);
+			em.persist(team);
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+
 	}
 
 	@After
