@@ -22,6 +22,31 @@ public class JPQLTest {
 		emf = Persistence.createEntityManagerFactory("jpabook");
 
 		makeMemberData();
+		makeTeamData();
+	}
+
+	private void makeTeamData() {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+
+		try {
+			tx.begin();
+			Team_p354 team = new Team_p354("영업팀");
+			em.persist(team);
+
+			List<Member_p354> members = em.createQuery("select m from Member_p354 m", Member_p354.class)
+					.getResultList();
+
+			for (Member_p354 m : members) {
+				m.setTeam(team);
+			}
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
 	}
 
 	private void makeMemberData() {
@@ -84,6 +109,26 @@ public class JPQLTest {
 			tx.begin();
 			List<Member_p354> members = em.createQuery("select m from Member_p354 m where m.username = :username")
 					.setParameter("username", "Bob").getResultList();
+
+			System.out.println(members);
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+	}
+
+	@Test
+	public void e_프로젝션() throws Exception {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+
+		try {
+			tx.begin();
+			List<Team_p354> members = em.createQuery("select m.team from Member_p354 m", Team_p354.class)
+					.getResultList();
 			
 			System.out.println(members);
 			

@@ -1,10 +1,9 @@
 package jpabook.chap10;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,18 +11,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Member_p354 {
+public class Team_p354 {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "TEAM_ID")
 	private Long id;
 
-	private String username;
+	private String name;
 
-	private Integer age;
-
-	@ManyToOne
-	@JoinColumn(name = "TEAM_ID")
-	private Team_p354 team;
+	public Team_p354(String name) {
+		this.name = name;
+	}
 
 }
